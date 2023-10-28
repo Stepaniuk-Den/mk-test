@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+@font-face {
+  font-family: 'MK3';
+  font-weight: 600;
+  src: local('MK3'), url(./assets/fonts/Mortal\ Kombat\ 3\ Regular.ttf) format('truetype');
+}
