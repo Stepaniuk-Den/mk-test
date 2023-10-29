@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   StyledFighterWrapperLeft,
@@ -10,25 +11,37 @@ import {
 import FighterCard from "../../components/FighterCard/FighterCard";
 import fighters from "../../data/fighters";
 
-import roundOne from '../../assets/audio/mk3_round1.mp3'
-import fight from '../../assets/audio/mk3_fight.mp3'
+import roundOne from "../../assets/audio/mk3_round1.mp3";
+import fight from "../../assets/audio/mk3_fight.mp3";
+
+import {
+  setSelectedFirstFighter,
+  setSelectFirstPlayer,
+  setSelectedSecondFighter,
+  setSelectSecondPlayer,
+} from "../../redux/reducer.js";
+
+import {
+  selectedFirstFighter,
+  selectedSecondFighter,
+  selectFirstPlayer,
+  selectSecondPlayer,
+} from "../../redux/selectors.js";
 
 const SelectCharacterPage = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const firstFighter = useSelector(selectedFirstFighter);
+  const firstPlayer = useSelector(selectFirstPlayer);
+  const secondFighter = useSelector(selectedSecondFighter);
+  const secondPlayer = useSelector(selectSecondPlayer);
 
   const audioRoundOne = new Audio(roundOne);
   const audioFight = new Audio(fight);
-  
-  const [selectedFirstFighter, setSelectedFirstFighter] = useState(fighters[0]);
-  const [selectedSecondFighter, setSelectedSecondFighter] = useState(
-    fighters[4]
-    );
-    const [selectFirstPlayer, setSelectFirstPlayer] = useState(null);
-    const [selectSecondPlayer, setSelectSecondPlayer] = useState(null);
-    
-    useEffect(() => {
-    
-    const selectFirst = document.getElementById(selectedFirstFighter.id);
+
+  useEffect(() => {
+    const selectFirst = document.getElementById(firstFighter.id);
     selectFirst.classList.add("is-active-first");
 
     const handleKeyPress = (evt) => {
@@ -36,51 +49,51 @@ const SelectCharacterPage = () => {
 
       if (evt.key === "ArrowLeft") {
         const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === selectedFirstFighter.id
+          (fighter) => fighter.id === firstFighter.id
         );
         const newIndex = (currentIndex - 1 + fighters.length) % fighters.length;
-        setSelectedFirstFighter(fighters[newIndex]);
+        dispatch(setSelectedFirstFighter(fighters[newIndex]));
       } else if (evt.key === "ArrowRight") {
         const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === selectedFirstFighter.id
+          (fighter) => fighter.id === firstFighter.id
         );
         const newIndex = (currentIndex + 1) % fighters.length;
-        setSelectedFirstFighter(fighters[newIndex]);
+        dispatch(setSelectedFirstFighter(fighters[newIndex]));
       } else if (evt.key === "ArrowDown") {
         const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === selectedFirstFighter.id
+          (fighter) => fighter.id === firstFighter.id
         );
         const newIndex = (currentIndex + 5) % fighters.length;
-        setSelectedFirstFighter(fighters[newIndex]);
+        dispatch(setSelectedFirstFighter(fighters[newIndex]));
       } else if (evt.key === "ArrowUp") {
         const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === selectedFirstFighter.id
+          (fighter) => fighter.id === firstFighter.id
         );
         const newIndex = (currentIndex - 5 + fighters.length) % fighters.length;
-        setSelectedFirstFighter(fighters[newIndex]);
+        dispatch(setSelectedFirstFighter(fighters[newIndex]));
       } else if (evt.key === "Enter") {
         const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === selectedFirstFighter.id
+          (fighter) => fighter.id === firstFighter.id
         );
-        setSelectFirstPlayer(fighters[currentIndex]);
+        dispatch(setSelectFirstPlayer(fighters[currentIndex]));
       }
     };
 
-    if (!selectFirstPlayer) {
+    if (!firstPlayer) {
       window.addEventListener("keydown", handleKeyPress);
     }
 
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, [selectedFirstFighter, selectFirstPlayer]);
+  }, [firstFighter, firstPlayer, dispatch]);
 
-  if (selectSecondPlayer) {
+  if (secondPlayer) {
     setTimeout(() => {
-      audioRoundOne.play()
+      audioRoundOne.play();
     }, 500);
     setTimeout(() => {
-      audioFight.play()
+      audioFight.play();
     }, 1700);
     setTimeout(() => {
       navigate("/versus");
@@ -88,8 +101,8 @@ const SelectCharacterPage = () => {
   }
 
   useEffect(() => {
-    if (selectFirstPlayer) {
-      const selectSecond = document.getElementById(selectedSecondFighter.id);
+    if (firstPlayer) {
+      const selectSecond = document.getElementById(secondFighter.id);
       selectSecond.classList.add("is-active-second");
 
       const handleKeyPress = (evt) => {
@@ -97,39 +110,39 @@ const SelectCharacterPage = () => {
 
         if (evt.key === "ArrowLeft") {
           const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === selectedSecondFighter.id
+            (fighter) => fighter.id === secondFighter.id
           );
           const newIndex =
             (currentIndex - 1 + fighters.length) % fighters.length;
-          setSelectedSecondFighter(fighters[newIndex]);
+          dispatch(setSelectedSecondFighter(fighters[newIndex]));
         } else if (evt.key === "ArrowRight") {
           const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === selectedSecondFighter.id
+            (fighter) => fighter.id === secondFighter.id
           );
           const newIndex = (currentIndex + 1) % fighters.length;
-          setSelectedSecondFighter(fighters[newIndex]);
+          dispatch(setSelectedSecondFighter(fighters[newIndex]));
         } else if (evt.key === "ArrowDown") {
           const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === selectedSecondFighter.id
+            (fighter) => fighter.id === secondFighter.id
           );
           const newIndex = (currentIndex + 5) % fighters.length;
-          setSelectedSecondFighter(fighters[newIndex]);
+          dispatch(setSelectedSecondFighter(fighters[newIndex]));
         } else if (evt.key === "ArrowUp") {
           const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === selectedSecondFighter.id
+            (fighter) => fighter.id === secondFighter.id
           );
           const newIndex =
             (currentIndex - 5 + fighters.length) % fighters.length;
-          setSelectedSecondFighter(fighters[newIndex]);
+          dispatch(setSelectedSecondFighter(fighters[newIndex]));
         } else if (evt.key === "Enter") {
           const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === selectedSecondFighter.id
+            (fighter) => fighter.id === secondFighter.id
           );
-          setSelectSecondPlayer(fighters[currentIndex]);
+          dispatch(setSelectSecondPlayer(fighters[currentIndex]));
         }
       };
 
-      if (!selectSecondPlayer) {
+      if (!secondPlayer) {
         window.addEventListener("keydown", handleKeyPress);
       }
 
@@ -137,7 +150,7 @@ const SelectCharacterPage = () => {
         window.removeEventListener("keydown", handleKeyPress);
       };
     }
-  }, [selectedSecondFighter, selectSecondPlayer, selectFirstPlayer, navigate]);
+  }, [secondFighter, secondPlayer, firstPlayer, dispatch]);
 
   return (
     <StyledSelectWrapper>
@@ -146,15 +159,15 @@ const SelectCharacterPage = () => {
         <StyledTable>
           <StyledFighterWrapperLeft>
             <img
-              src={fighters[selectedFirstFighter.id - 1].img_gif}
+              src={fighters[firstFighter.id - 1].img_gif}
               alt={fighters.name}
             />
           </StyledFighterWrapperLeft>
-          <FighterCard selectedId={selectedFirstFighter} />
+          <FighterCard selectedId={firstFighter} />
           <StyledFighterWrapperRight>
-            {selectFirstPlayer ? (
+            {firstPlayer ? (
               <img
-                src={fighters[selectedSecondFighter.id - 1].img_gif}
+                src={fighters[secondFighter.id - 1].img_gif}
                 alt={fighters.name}
               />
             ) : null}

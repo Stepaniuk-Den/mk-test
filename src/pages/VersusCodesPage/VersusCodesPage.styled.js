@@ -4,13 +4,10 @@ import bg_versus from "../../assets/images/background_versus.webp"
 
 
 export const StyledVersusWrapper = styled.div`
-/* margin: 10% auto; */
-
 display: flex;
 flex-direction: column;
 position: relative;
-/* width: 800px;
-height: 508px; */
+margin: auto;
 width: 100%;
 height: 100vh;
 background-image: url(${bg_versus});
@@ -106,5 +103,7 @@ height: 582px;
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transform: rotateY(180deg);
 }
 `;
+
