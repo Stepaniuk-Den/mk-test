@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -16,7 +16,13 @@ import {
 import {
   selectFirstPlayer,
   selectSecondPlayer,
+  isSelected,
 } from "../../redux/selectors.js";
+
+import {
+  deleteSelectedPlayers,
+  setIsSelected,
+} from "../../redux/reducer.js";
 
 import battle from "../../assets/images/battle.gif";
 import digital from "../../assets/images/digital_1.gif";
@@ -30,23 +36,38 @@ import Bonus from "../../components/Bonus/Bonus";
 const VersusCodesPage = () => {
   
   const navigate = useNavigate();
+  const dispatch = useDispatch()
 
-  const firstPlayer = useSelector(selectFirstPlayer);
-  const secondPlayer = useSelector(selectSecondPlayer);
+  const useFirstPlayer = useSelector(selectFirstPlayer);
+  const useSecondPlayer = useSelector(selectSecondPlayer);
+  const useIsSelected = useSelector(isSelected)
 
   const start = new Audio(startBattle);
 
  setTimeout(() => {
   start.play()
- }, 1000);
 
- setTimeout(() => {
+}, 1000);
+
+setTimeout(() => {
   navigate("/");
 }, 4000);
 
   useEffect (()=> {
 
-  }, []);
+    const handleBackKeyPress =(evt) => {
+      
+       dispatch(deleteSelectedPlayers())
+       dispatch(setIsSelected(false))
+      };
+  
+    if (useFirstPlayer || useIsSelected) {
+      window.addEventListener("popstate", handleBackKeyPress);
+    }
+    return () => {
+      window.removeEventListener("popstate", handleBackKeyPress);
+    };
+  }, [useFirstPlayer, useIsSelected, dispatch]);
 
   return (
     <>
@@ -67,10 +88,10 @@ const VersusCodesPage = () => {
           <img src={vs} alt="vs" />
         </StyledVs>
         <StyledPlayerLeft>
-          <img src={firstPlayer.img_versus} alt="" />
+          <img src={useFirstPlayer.img_versus} alt={useFirstPlayer.name} />
         </StyledPlayerLeft>
         <StyledPlayerRight>
-          <img src={secondPlayer.img_versus} alt="" />
+          <img src={useSecondPlayer.img_versus} alt={useSecondPlayer.name} />
         </StyledPlayerRight>
         <Bonus/>
       </StyledVersusWrapper>

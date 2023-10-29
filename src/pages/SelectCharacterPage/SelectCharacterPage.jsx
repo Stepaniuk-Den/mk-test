@@ -19,6 +19,8 @@ import {
   setSelectFirstPlayer,
   setSelectedSecondFighter,
   setSelectSecondPlayer,
+  setIsSelected,
+  setError,
 } from "../../redux/reducer.js";
 
 import {
@@ -32,63 +34,104 @@ const SelectCharacterPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const firstFighter = useSelector(selectedFirstFighter);
-  const firstPlayer = useSelector(selectFirstPlayer);
-  const secondFighter = useSelector(selectedSecondFighter);
-  const secondPlayer = useSelector(selectSecondPlayer);
+  const useFirstFighter = useSelector(selectedFirstFighter);
+  const useFirstPlayer = useSelector(selectFirstPlayer);
+  const useSecondFighter = useSelector(selectedSecondFighter);
+  const useSecondPlayer = useSelector(selectSecondPlayer);
 
   const audioRoundOne = new Audio(roundOne);
   const audioFight = new Audio(fight);
 
   useEffect(() => {
-    const selectFirst = document.getElementById(firstFighter.id);
+    const selectFirst = document.getElementById(useFirstFighter.id);
     selectFirst.classList.add("is-active-first");
 
-    const handleKeyPress = (evt) => {
+    const handleChoiceFirstPlayer = (evt) => {
       selectFirst.classList.remove("is-active-first");
 
-      if (evt.key === "ArrowLeft") {
-        const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === firstFighter.id
-        );
-        const newIndex = (currentIndex - 1 + fighters.length) % fighters.length;
-        dispatch(setSelectedFirstFighter(fighters[newIndex]));
-      } else if (evt.key === "ArrowRight") {
-        const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === firstFighter.id
-        );
-        const newIndex = (currentIndex + 1) % fighters.length;
-        dispatch(setSelectedFirstFighter(fighters[newIndex]));
-      } else if (evt.key === "ArrowDown") {
-        const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === firstFighter.id
-        );
-        const newIndex = (currentIndex + 5) % fighters.length;
-        dispatch(setSelectedFirstFighter(fighters[newIndex]));
-      } else if (evt.key === "ArrowUp") {
-        const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === firstFighter.id
-        );
-        const newIndex = (currentIndex - 5 + fighters.length) % fighters.length;
-        dispatch(setSelectedFirstFighter(fighters[newIndex]));
-      } else if (evt.key === "Enter") {
-        const currentIndex = fighters.findIndex(
-          (fighter) => fighter.id === firstFighter.id
-        );
-        dispatch(setSelectFirstPlayer(fighters[currentIndex]));
+      const key = evt.key;
+
+      const keyActions = {
+        ArrowLeft: -1,
+        ArrowRight: 1,
+        ArrowDown: 5,
+        ArrowUp: -5,
+      };
+      try {
+        if (keyActions[key]) {
+          const currentIndex = fighters.findIndex(
+            (fighter) => fighter.id === useFirstFighter.id
+          );
+          const newIndex =
+            (currentIndex + keyActions[key] + fighters.length) %
+            fighters.length;
+          dispatch(setSelectedFirstFighter(fighters[newIndex]));
+        } else if (key === "Enter") {
+          const currentIndex = fighters.findIndex(
+            (fighter) => fighter.id === useFirstFighter.id
+          );
+          dispatch(setSelectFirstPlayer(fighters[currentIndex]));
+        }
+      } catch (error) {
+        dispatch(setError(error.message));
       }
     };
 
-    if (!firstPlayer) {
-      window.addEventListener("keydown", handleKeyPress);
+    if (!useFirstPlayer) {
+      window.addEventListener("keydown", handleChoiceFirstPlayer);
     }
-
     return () => {
-      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("keydown", handleChoiceFirstPlayer);
     };
-  }, [firstFighter, firstPlayer, dispatch]);
+  }, [useFirstFighter, useFirstPlayer, dispatch]);
 
-  if (secondPlayer) {
+  useEffect(() => {
+    if (useFirstPlayer) {
+      const selectSecond = document.getElementById(useSecondFighter.id);
+      selectSecond.classList.add("is-active-second");
+
+      const handleChoiceSecondPlayer = (evt) => {
+        selectSecond.classList.remove("is-active-second");
+
+        const key = evt.key;
+
+        const keyActions = {
+          ArrowLeft: -1,
+          ArrowRight: 1,
+          ArrowDown: 5,
+          ArrowUp: -5,
+        };
+        try {
+          if (keyActions[key]) {
+            const currentIndex = fighters.findIndex(
+              (fighter) => fighter.id === useSecondFighter.id
+            );
+            const newIndex =
+              (currentIndex + keyActions[key] + fighters.length) %
+              fighters.length;
+            dispatch(setSelectedSecondFighter(fighters[newIndex]));
+          } else if (key === "Enter") {
+            const currentIndex = fighters.findIndex(
+              (fighter) => fighter.id === useSecondFighter.id
+            );
+            dispatch(setSelectSecondPlayer(fighters[currentIndex]));
+          }
+        } catch (error) {
+          dispatch(setError(error.message));
+        }
+      };
+
+      if (!useSecondPlayer) {
+        window.addEventListener("keydown", handleChoiceSecondPlayer);
+      }
+      return () => {
+        window.removeEventListener("keydown", handleChoiceSecondPlayer);
+        dispatch(setIsSelected(true));
+      };
+    }
+  }, [useSecondFighter, useSecondPlayer, useFirstPlayer, dispatch]);
+
+  if (useSecondPlayer) {
     setTimeout(() => {
       audioRoundOne.play();
     }, 500);
@@ -99,59 +142,6 @@ const SelectCharacterPage = () => {
       navigate("/versus");
     }, 2000);
   }
-
-  useEffect(() => {
-    if (firstPlayer) {
-      const selectSecond = document.getElementById(secondFighter.id);
-      selectSecond.classList.add("is-active-second");
-
-      const handleKeyPress = (evt) => {
-        selectSecond.classList.remove("is-active-second");
-
-        if (evt.key === "ArrowLeft") {
-          const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === secondFighter.id
-          );
-          const newIndex =
-            (currentIndex - 1 + fighters.length) % fighters.length;
-          dispatch(setSelectedSecondFighter(fighters[newIndex]));
-        } else if (evt.key === "ArrowRight") {
-          const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === secondFighter.id
-          );
-          const newIndex = (currentIndex + 1) % fighters.length;
-          dispatch(setSelectedSecondFighter(fighters[newIndex]));
-        } else if (evt.key === "ArrowDown") {
-          const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === secondFighter.id
-          );
-          const newIndex = (currentIndex + 5) % fighters.length;
-          dispatch(setSelectedSecondFighter(fighters[newIndex]));
-        } else if (evt.key === "ArrowUp") {
-          const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === secondFighter.id
-          );
-          const newIndex =
-            (currentIndex - 5 + fighters.length) % fighters.length;
-          dispatch(setSelectedSecondFighter(fighters[newIndex]));
-        } else if (evt.key === "Enter") {
-          const currentIndex = fighters.findIndex(
-            (fighter) => fighter.id === secondFighter.id
-          );
-          dispatch(setSelectSecondPlayer(fighters[currentIndex]));
-        }
-      };
-
-      if (!secondPlayer) {
-        window.addEventListener("keydown", handleKeyPress);
-      }
-
-      return () => {
-        window.removeEventListener("keydown", handleKeyPress);
-      };
-    }
-  }, [secondFighter, secondPlayer, firstPlayer, dispatch]);
-
   return (
     <StyledSelectWrapper>
       <StyledSelectPage>
@@ -159,15 +149,15 @@ const SelectCharacterPage = () => {
         <StyledTable>
           <StyledFighterWrapperLeft>
             <img
-              src={fighters[firstFighter.id - 1].img_gif}
+              src={fighters[useFirstFighter.id - 1].img_gif}
               alt={fighters.name}
             />
           </StyledFighterWrapperLeft>
-          <FighterCard selectedId={firstFighter} />
+          <FighterCard selectedId={useFirstFighter} />
           <StyledFighterWrapperRight>
-            {firstPlayer ? (
+            {useFirstPlayer ? (
               <img
-                src={fighters[secondFighter.id - 1].img_gif}
+                src={fighters[useSecondFighter.id - 1].img_gif}
                 alt={fighters.name}
               />
             ) : null}

@@ -1,45 +1,54 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  selectedFirstFighter:
-  {
+  selectedFirstFighter: {
     id: 1,
-    name: null,
-    img_select: null,
-    img_versus: null,
-    img_gif: null,
   },
-  selectedSecondFighter: 
-  {
+  selectedSecondFighter: {
     id: 5,
-    name: null,
-    img_select: null,
-    img_versus: null,
-    img_gif: null,
   },
   selectFirstPlayer: null,
   selectSecondPlayer: null,
-}
+  isSelected: false,
+  error: null,
+};
 
 const selectSlice = createSlice({
-  name: 'select',
+  name: "select",
   initialState,
   reducers: {
     setSelectedFirstFighter: (state, action) => {
-      state.selectedFirstFighter = action.payload
+      state.selectedFirstFighter = action.payload;
     },
     setSelectFirstPlayer: (state, action) => {
-      state.selectFirstPlayer = action.payload
+      state.selectFirstPlayer = action.payload;
     },
     setSelectedSecondFighter: (state, action) => {
-      state.selectedSecondFighter = action.payload
+      state.selectedSecondFighter = action.payload;
     },
     setSelectSecondPlayer: (state, action) => {
-      state.selectSecondPlayer = action.payload
+      state.selectSecondPlayer = action.payload;
     },
+    deleteSelectedPlayers: (state, action) => {
+      state.selectFirstPlayer = null;
+      state.selectSecondPlayer = null;
+    },
+    setIsSelected: (state, action) => {
+      state.isSelected = action.payload;
+    },
+    setError: (state, action) => {
+      state.error = action.payload;
+    },
+  },
+});
 
-  }
-})
-
-export const {setSelectedFirstFighter, setSelectedSecondFighter, setSelectFirstPlayer, setSelectSecondPlayer} = selectSlice.actions;
+export const {
+  deleteSelectedPlayers,
+  setSelectedFirstFighter,
+  setSelectedSecondFighter,
+  setSelectFirstPlayer,
+  setSelectSecondPlayer,
+  setIsSelected,
+  setError,
+} = selectSlice.actions;
 export const selectReducer = selectSlice.reducer;
