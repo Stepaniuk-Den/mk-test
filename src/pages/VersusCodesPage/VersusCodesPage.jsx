@@ -59,10 +59,6 @@ const VersusCodesPage = () => {
   
     if (useFirstPlayer || useIsSelected) {
       window.addEventListener("popstate", handleBackKeyPress);
-
-      setTimeout(() => {
-        navigate("/");
-      }, 4000);
     }
     return () => {
       window.removeEventListener("popstate", handleBackKeyPress);

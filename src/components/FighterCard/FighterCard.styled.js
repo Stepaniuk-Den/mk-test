@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const StyledFighterCard = styled.div`
 display: flex;
+position: relative;
 box-sizing: border-box;
 width: 140px;
 height: 170px;

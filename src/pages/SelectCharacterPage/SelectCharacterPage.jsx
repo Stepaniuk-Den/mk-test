@@ -153,7 +153,7 @@ const SelectCharacterPage = () => {
               alt={fighters.name}
             />
           </StyledFighterWrapperLeft>
-          <FighterCard selectedId={useFirstFighter} />
+          <FighterCard />
           <StyledFighterWrapperRight>
             {useFirstPlayer ? (
               <img

@@ -2,8 +2,7 @@ import React from "react";
 import { StyledFighterCard, StyledWrapper } from "./FighterCard.styled";
 import fighters from "../../data/fighters";
 
-const FighterCard = ({selectedId}) => {
-  // console.log(selectedId.name);
+const FighterCard = () => {
 
   return (
     <>

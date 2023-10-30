@@ -9,8 +9,11 @@ import bonusMk from "../../assets/images/bonus/bonus_mk.gif";
 import bonusRaiden from "../../assets/images/bonus/bonus_raiden.gif";
 import bonusShao from "../../assets/images/bonus/bonus_shao.gif";
 import bonusThree from "../../assets/images/bonus/bonus_three.gif";
+import { useNavigate } from "react-router-dom";
 
 const Bonus = () => {
+  const navigate = useNavigate();
+
   const [pressedQ, setPressedQ] = useState(false);
   const [pressedW, setPressedW] = useState(false);
   const [pressedE, setPressedE] = useState(false);
@@ -19,9 +22,10 @@ const Bonus = () => {
   const [pressedY, setPressedY] = useState(false);
 
   const pressedKeys =
-    !pressedQ || !pressedW || !pressedE || !pressedR || !pressedT || !pressedY;
+    pressedQ && pressedW && pressedE && pressedR && pressedT && pressedY;
 
   useEffect(() => {
+
     const handleKeyPressQwerty = (evt) => {
       const key = evt.key.toLowerCase();
 
@@ -57,14 +61,21 @@ const Bonus = () => {
           break;
       }
     };
-    if (pressedKeys) {
+    if (!pressedKeys) {
       window.addEventListener("keydown", handleKeyPressQwerty);
+      console.log(pressedKeys)
     }
-
+    
     return () => {
       window.removeEventListener("keydown", handleKeyPressQwerty);
     };
-  }, [pressedKeys]);
+  }, [pressedKeys, navigate]);
+  
+  if (pressedKeys) {
+    setTimeout(() => {
+      navigate("/");
+    }, 4000);
+  }
 
   return (
     <>

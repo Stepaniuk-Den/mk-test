@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+<h1 align="center">MK Test App</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Даний додаток - це тестове завдання, яке імітує три екрани з популярної комп'ютерної гри <b>Mortal Kombat 3</b>.
 
-## Available Scripts
+ У завданні використовувалися такі технологіЇ:
+- React.js,
+- Redux-Toolkit.js,
+- React Router.
 
-In the project directory, you can run:
+Всі зображення були оптимізовані за допомогою Squoosh https://squoosh.app/ 
+ 
 
-### `npm start`
+<h3 align="center">MainPage</h3>
+<img src="./public/readme_MK-Test_1_page.webp">
+Це стартова сторінка, яка дозволяє по кліку лівою кнопкою миші на "PRESS START" або безпосередньо при натисканні клавіши "ENTER" перейти на наступну сторінку з вибором персонажів для початку гри.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
 
-### `npm test`
+<h3 align="center">SelectCharacterPage</h3>
+<img src="./public/readme_MK-Test_2_page.webp">
+Це сторінка з вибором персонажів для гри за допомогою клавіш ArrowUp / ArrowDown / ArrowLeft / ArrowRight.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ Після вибору персонажу першим гравцем після натискання клавіши "ENTER" стає доступним вибір персонажу другим гравцем.
 
-### `npm run build`
+Після вибору персонажу другим гравцем після натискання клавіши "ENTER" через 2 секунди додаток переходить на наступну сторінку.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<h3 align="center">SelectCharacterPage</h3>
+<img src="./public/readme_MK-Test_3_page.webp">
+<p>Це остання сторінка даного додатку.</br> На ній відображаються ті перонажі, які були обрані на попередній сторінці. Також за допомогою клавіш "Q", "W", "E", "R", "T", "Y" можна обернути обмежений список символів, по одному на кожну клавішу, після чого через 4 секунди додаток повертається на стартову сторінку.</p>
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Використання прикладу:**
+ 1. Встановити всі залежності за допомогою команди npm install .
+ 2. Запустити додаток за допомогою команди npm start .
+Додаток буде доступний у браузері за адресою http://localhost:3000.

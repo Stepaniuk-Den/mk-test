@@ -7,6 +7,7 @@ width: 100%;
 height: 100vh;
 background-image: url(${bg_select});
 background-size: cover;
+background-position: center center;
 `;
 
 export const StyledSelectPage = styled.div`

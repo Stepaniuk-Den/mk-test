@@ -12,6 +12,7 @@ width: 100%;
 height: 100vh;
 background-image: url(${bg_versus});
 background-size: cover;
+background-position: center center;
 
 `;
 export const StyledVersusWrapper = styled.div`
