@@ -63,7 +63,6 @@ const Bonus = () => {
     };
     if (!pressedKeys) {
       window.addEventListener("keydown", handleKeyPressQwerty);
-      console.log(pressedKeys)
     }
     
     return () => {
