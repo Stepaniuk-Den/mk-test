@@ -3,12 +3,22 @@ import { Link } from "react-router-dom";
 
 import bg_main from "../../assets/images/title.webp";
 
-export const StyledMainWrapper = styled.div`
+export const StyledMainPage = styled.div`
   display: flex;
   width: 100%;
   height: 100vh;
   background-image: url(${bg_main});
   background-size: cover;
+`;
+export const StyledMainWrapper = styled.div`
+  display: flex;
+  margin: auto;
+  width: 90%;
+  height: 100vh;
+
+  @media screen and (min-width: 1281px) {
+    max-width: 1280px;
+  }
 `;
 
 export const StyledLink = styled(Link)`

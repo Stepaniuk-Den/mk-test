@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { StyledLink, StyledMainWrapper } from "./MainPage.styled";
+import { StyledLink, StyledMainPage, StyledMainWrapper } from "./MainPage.styled";
 import { useDispatch } from "react-redux";
 import { deleteSelectedPlayers, setIsSelected } from "../../redux/reducer";
 import { useNavigate } from "react-router-dom";
@@ -26,9 +26,13 @@ const MainPage = () => {
   }, [dispatch, navigate])
   
 
-  return <StyledMainWrapper>
+  return (
+    <StyledMainPage>
+    <StyledMainWrapper>
     <StyledLink to="/select">Press Start</StyledLink>
-  </StyledMainWrapper>;
+  </StyledMainWrapper>
+  </StyledMainPage>
+  )
 };
 
 export default MainPage;

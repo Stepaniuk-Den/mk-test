@@ -9,6 +9,7 @@ import {
   StyledDragonRight,
   StyledPlayerLeft,
   StyledPlayerRight,
+  StyledVersusPage,
   StyledVersusWrapper,
   StyledVs,
 } from "./VersusCodesPage.styled";
@@ -44,18 +45,13 @@ const VersusCodesPage = () => {
 
   const start = new Audio(startBattle);
 
- setTimeout(() => {
-  start.play()
-
-}, 1000);
-
-setTimeout(() => {
-  navigate("/");
-}, 4000);
-
+  setTimeout(() => {
+    start.play()
+  }, 1000);
+  
   useEffect (()=> {
-
-    const handleBackKeyPress =(evt) => {
+    
+    const handleBackKeyPress =() => {
       
        dispatch(deleteSelectedPlayers())
        dispatch(setIsSelected(false))
@@ -63,14 +59,19 @@ setTimeout(() => {
   
     if (useFirstPlayer || useIsSelected) {
       window.addEventListener("popstate", handleBackKeyPress);
+
+      setTimeout(() => {
+        navigate("/");
+      }, 4000);
     }
     return () => {
       window.removeEventListener("popstate", handleBackKeyPress);
     };
-  }, [useFirstPlayer, useIsSelected, dispatch]);
+  }, [useFirstPlayer, useIsSelected, dispatch, navigate]);
 
   return (
     <>
+      <StyledVersusPage>
       <StyledVersusWrapper>
         <StyledDragonLeft>
           <img src={dragonLeft} alt="dragonLeft" />
@@ -95,6 +96,7 @@ setTimeout(() => {
         </StyledPlayerRight>
         <Bonus/>
       </StyledVersusWrapper>
+      </StyledVersusPage>
     </>
   );
 };

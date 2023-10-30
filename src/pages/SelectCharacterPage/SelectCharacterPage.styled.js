@@ -11,7 +11,7 @@ background-size: cover;
 
 export const StyledSelectPage = styled.div`
   margin: auto;
-  width: 1024px;
+  width: 90%;
   padding: 10px;
 
 
@@ -34,6 +34,10 @@ export const StyledSelectPage = styled.div`
 
     padding: 20px;
     margin: 0 auto;
+  }
+
+  @media screen and (min-width: 1281px) {
+    max-width: 1280px;
   }
 `;
 export const StyledTable = styled.ul`

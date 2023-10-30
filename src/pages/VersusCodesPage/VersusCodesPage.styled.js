@@ -3,7 +3,7 @@ import styled from "styled-components";
 import bg_versus from "../../assets/images/background_versus.webp"
 
 
-export const StyledVersusWrapper = styled.div`
+export const StyledVersusPage = styled.div`
 display: flex;
 flex-direction: column;
 position: relative;
@@ -12,6 +12,20 @@ width: 100%;
 height: 100vh;
 background-image: url(${bg_versus});
 background-size: cover;
+
+`;
+export const StyledVersusWrapper = styled.div`
+display: flex;
+flex-direction: column;
+position: relative;
+margin: auto;
+width: 100%;
+height: 100vh;
+
+@media screen and (min-width: 1281px) {
+    max-width: 1280px;
+
+  }
 `;
 
 export const StyledDragonLeft = styled.div`
@@ -91,6 +105,9 @@ height: 582px;
     height: 100%;
     object-fit: contain;
 }
+@media screen and (max-width: 1279px) {
+    width: 50%;
+  }
 `;
 export const StyledPlayerRight = styled.div`
 position:absolute;
@@ -105,5 +122,9 @@ height: 582px;
     object-fit: contain;
     transform: rotateY(180deg);
 }
+
+@media screen and (max-width: 1279px) {
+    width: 50%;
+  }
 `;
 

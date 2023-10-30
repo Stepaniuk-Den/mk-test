@@ -1,5 +1,5 @@
 import { Suspense, lazy } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Layout from './pages/Layout';
 import Loader from './components/Loader/Loader';
@@ -17,6 +17,7 @@ function App() {
       <Route index element={<MainPage/>}></Route>
       <Route path='/select' element={<SelectPage/>}></Route>
       <Route path='/versus' element={<VersusPage/>}></Route>
+      <Route path="*" element={<Navigate to="/" replace />} />
       </Route>
     </Routes>
     </Suspense>

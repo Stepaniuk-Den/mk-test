@@ -17,25 +17,47 @@ const Bonus = () => {
   const [pressedR, setPressedR] = useState(false);
   const [pressedT, setPressedT] = useState(false);
   const [pressedY, setPressedY] = useState(false);
-  const pressedKeys = !pressedQ || !pressedW || !pressedE || !pressedR || !pressedT || !pressedY
+
+  const pressedKeys =
+    !pressedQ || !pressedW || !pressedE || !pressedR || !pressedT || !pressedY;
 
   useEffect(() => {
     const handleKeyPressQwerty = (evt) => {
-      if (evt.key === "Q" || evt.key === "q") {
-        setPressedQ(true);
-      } else if (evt.key === "W" || evt.key === "w") {
-        setPressedW(true);
-      } else if (evt.key === "E" || evt.key === "e") {
-        setPressedE(true);
-      } else if (evt.key === "R" || evt.key === "r") {
-        setPressedR(true);
-      } else if (evt.key === "T" || evt.key === "t") {
-        setPressedT(true);
-      } else if (evt.key === "Y" || evt.key === "y") {
-        setPressedY(true);
+      const key = evt.key.toLowerCase();
+
+      const keyPressed = {
+        q: "Q",
+        w: "W",
+        e: "E",
+        r: "R",
+        t: "T",
+        y: "Y",
+      };
+
+      switch (keyPressed[key]) {
+        case "Q":
+          setPressedQ(true);
+          break;
+        case "W":
+          setPressedW(true);
+          break;
+        case "E":
+          setPressedE(true);
+          break;
+        case "R":
+          setPressedR(true);
+          break;
+        case "T":
+          setPressedT(true);
+          break;
+        case "Y":
+          setPressedY(true);
+          break;
+        default:
+          break;
       }
     };
-    if (pressedKeys ) {
+    if (pressedKeys) {
       window.addEventListener("keydown", handleKeyPressQwerty);
     }
 
