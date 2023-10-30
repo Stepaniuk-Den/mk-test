@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/mk-test/static/css/main.dfeb7043.css",
-    "main.js": "/mk-test/static/js/main.2ea47e31.js",
-    "static/js/5.1e140c12.chunk.js": "/mk-test/static/js/5.1e140c12.chunk.js",
-    "static/js/625.2cd63c19.chunk.js": "/mk-test/static/js/625.2cd63c19.chunk.js",
-    "static/js/439.54335df4.chunk.js": "/mk-test/static/js/439.54335df4.chunk.js",
+    "main.js": "/mk-test/static/js/main.ad4fcad8.js",
+    "static/js/5.c6d3b4c1.chunk.js": "/mk-test/static/js/5.c6d3b4c1.chunk.js",
+    "static/js/625.0b721603.chunk.js": "/mk-test/static/js/625.0b721603.chunk.js",
+    "static/js/439.a3f7db9b.chunk.js": "/mk-test/static/js/439.a3f7db9b.chunk.js",
     "static/js/608.0084c1bd.chunk.js": "/mk-test/static/js/608.0084c1bd.chunk.js",
     "static/media/gif_Liu_kang.gif": "/mk-test/static/media/gif_Liu_kang.4cab9acd1fd546be8fdf.gif",
     "static/media/mk3_start_battle.mp3": "/mk-test/static/media/mk3_start_battle.5af9df9d4b409c35dee4.mp3",
@@ -63,14 +63,14 @@
     "static/media/select_Sheeva.webp": "/mk-test/static/media/select_Sheeva.8048ec1281df456eeef0.webp",
     "index.html": "/mk-test/index.html",
     "main.dfeb7043.css.map": "/mk-test/static/css/main.dfeb7043.css.map",
-    "main.2ea47e31.js.map": "/mk-test/static/js/main.2ea47e31.js.map",
-    "5.1e140c12.chunk.js.map": "/mk-test/static/js/5.1e140c12.chunk.js.map",
-    "625.2cd63c19.chunk.js.map": "/mk-test/static/js/625.2cd63c19.chunk.js.map",
-    "439.54335df4.chunk.js.map": "/mk-test/static/js/439.54335df4.chunk.js.map",
+    "main.ad4fcad8.js.map": "/mk-test/static/js/main.ad4fcad8.js.map",
+    "5.c6d3b4c1.chunk.js.map": "/mk-test/static/js/5.c6d3b4c1.chunk.js.map",
+    "625.0b721603.chunk.js.map": "/mk-test/static/js/625.0b721603.chunk.js.map",
+    "439.a3f7db9b.chunk.js.map": "/mk-test/static/js/439.a3f7db9b.chunk.js.map",
     "608.0084c1bd.chunk.js.map": "/mk-test/static/js/608.0084c1bd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.dfeb7043.css",
-    "static/js/main.2ea47e31.js"
+    "static/js/main.ad4fcad8.js"
   ]
 }
