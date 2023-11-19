@@ -28,7 +28,7 @@ const Bonus = () => {
 
     const handleKeyPressQwerty = (evt) => {
       const key = evt.key.toLowerCase();
-
+      
       const keyPressed = {
         q: "Q",
         w: "W",
